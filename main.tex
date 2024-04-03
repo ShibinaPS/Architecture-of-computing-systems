@@ -1,0 +1,142 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{cmap}
+\usepackage[utf8]{inputenc}
+\usepackage[warn]{mathtext}
+\usepackage{epsf,amsmath,amsfonts,amssymb,amsbsy}
+\usepackage[mathscr]{eucal}
+\usepackage[english, russian]{babel}
+\title{
+\begin{centering}
+Отчёт
+\end{centering}
+}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{mathtext}
+\usepackage{amsmath}
+\usepackage{siunitx} % Required for alignment
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{afterpage}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{caption}
+\usepackage[arrowdel]{physics}
+\usepackage{booktabs}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{pgfplots}
+\begin{document}
+	\maketitle
+
+\newline
+1. Шибина Полина Сергеевна
+
+\newline
+2. Б01-208
+
+\newline
+3. D-Flip-Flop
+
+\newline
+4. shibina.ps@phystech.edu
+
+\newline
+5. D-Flip-Flop - это запоминающее устройство в цифровых схемах, которое может хранить один бит данных. У него только один вход, кроме тактового сигнала, - "DATA". Выходной cигнал совпадает со входным, но задерживается на один такт.
+
+\newline
+Данный триггер имеет только один основной ввод, следовательно, может обрабатывать только один бит данных одновременно. Этот бит данных хранится до следующего тактового сигнала.
+
+\newline
+D-Flip-Flop имеет две выходные структуры - фактический выходной сигнал (Q) и его дополнение(!Q), принимающее обратное значение. Основной выходной сигнал будет таким же, как и входной, но с задержкой на один такт.
+
+\newline
+Триггер D-типа имеет структуру "ведущий-ведомый" ("master-slave"). Это включает в себя два этапа триггерного переключения - "ведущий" $ $ реагирует на состояние входа при поступлении тактового импульса, в то время как "ведомый" $ $ реагирует на выходной сигнал ведущего устройства, когда тактовый импульс заканчивается.
+
+\newline
+Структура "ведущий-ведомый" позволяет D-триггеру изменять состояния во время передачи тактового сигнала, а не непрерывно. Это предотвращает непредсказуемое поведение при изменении данных.
+
+\newline
+Когда тактовый сигнал переходит с низкого уровня на высокий, состояние входного сигнала DATA фиксируется и передается на выход Q. Например, если DATA было "1" $ $ в момент перехода, "Q"$ $ станет "1"$ $, а "!Q"$ $ станет "0". Это состояние сохраняется до следующего положительного фронта тактового сигнала, независимо от изменений значения DATA за это время.
+
+\newline
+Триггеры D-типа можно рассматривать как "хранители" $ $ цифровых данных. Они временно сохраняют и передают данные по мере необходимости, позволяя другим компонентам системы функционировать без непрерывного ввода данных.
+
+\newline
+6. 
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+CLK & DATA & $Q_{n}$ & $Q_{n+1}$ \\ \hline
+0   & D   &  Q  & Q \\ \hline
+1   & D   &  Q  & Q    \\ \hline
+0 $\rightarrow$ 1   & D & Q & D \\ \hline
+1 $\rightarrow$ 0   & D & Q & Q \\ \hline
+\end{tabular}
+\caption{Таблица истинности для D-Flip-Flop}
+\end{table}\\
+
+
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=15cm]{1.png}
+	\end{center}
+	\caption{\textit{Тактовый вход: низкий (логический уровень 0), данные на вход: 0, выходные данные: Q = 0, !Q = 1}}
+	\label{ust}
+        \end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=15cm]{2.png}
+	\end{center}
+	\caption{\textit{Тактовый вход: низкий (логический уровень 0), данные на вход: 1, выходные данные: Q = 0, !Q = 1}}
+	\label{ust}
+        \end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=15cm]{3.png}
+	\end{center}
+	\caption{\textit{Тактовый вход: высокий (логический уровень 1), данные на вход: 0, выходные данные: Q = 0, !Q = 1}}
+	\label{ust}
+        \end{figure}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=15cm]{4.png}
+	\end{center}
+	\caption{\textit{Тактовый вход: высокий (логический уровень 1), данные на вход: 1, выходные данные: Q = 1, !Q = 0}}
+	\label{ust}
+        \end{figure}
+
+
+\newline
+7. Критический путь
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=15cm]{Критический путь.png}
+	\end{center}
+	\caption{\textit{Критический путь}}
+	\label{ust}
+        \end{figure}
+
+\newline
+8. Подсчёт транзисторов (без учёта PROBE, PIN и CLK):
+
+\newline
+1) 8x NAND (NAND = AND + NOT), итого 16 транзисторов;
+
+\newline
+2) NOT: 2, то есть 4 транзистора;
+
+\newline
+В итоге получаем 20 транзисторов в схеме.
+
+
+\end{document}
